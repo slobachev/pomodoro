@@ -12,6 +12,7 @@ import {
 import App from './app/App';
 import rootReducer from './reducers';
 import * as serviceWorker from './serviceWorker';
+import "./index.css";
 
 const middleware = applyMiddleware(thunk);
 const store = createStore(rootReducer, middleware);
