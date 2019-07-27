@@ -2,7 +2,8 @@ import {
     INCREMENT_BREAK_LENGTH, 
     INCREMENT_SESSION_LENGTH, 
     DECREMENT_BREAK_LENGTH, 
-    DECREMENT_SESSION_LENGTH 
+    DECREMENT_SESSION_LENGTH, 
+    RESET
 } from "./actions";
 
 export const incrementBreakLength = () => {
@@ -26,5 +27,11 @@ export const decrementBreakLength = () => {
 export const decrementSessionLength = () => {
     return {
         type: DECREMENT_SESSION_LENGTH
+    }
+}
+
+export const reset = () => {
+    return {
+        type: RESET
     }
 }

@@ -2,7 +2,9 @@ import {
     INCREMENT_BREAK_LENGTH, 
     INCREMENT_SESSION_LENGTH, 
     DECREMENT_BREAK_LENGTH, 
-    DECREMENT_SESSION_LENGTH 
+    DECREMENT_SESSION_LENGTH,
+    TOGGLE_COUNTER,
+    RESET
 } from "./actions";
 
 const initialState = {
@@ -21,26 +23,30 @@ const pomodoroReducer = (state = initialState, action) => {
       return {
         ...state,
         breakLength: state.breakLength !== 60 ? state.breakLength + 1 : state.breakLength,
-        currentTime: (!state.isSession && state.breakLength !== 60) ? { minutes: state.currentTime.minutes + 1,  seconds: 0} : state.currentTime
+        currentTime: (!state.isSession && state.breakLength !== 60) ? { minutes: state.breakLength + 1,  seconds: 0} : state.currentTime
       };
     case DECREMENT_BREAK_LENGTH:
       return {
         ...state,
         breakLength: state.breakLength !== 1 ? state.breakLength - 1 : 1,
-        currentTime: (!state.isSession && state.breakLength !== 1) ? { minutes: state.currentTime.minutes - 1,  seconds: 0} : state.currentTime
+        currentTime: (!state.isSession && state.breakLength !== 1) ? { minutes: state.breakLength - 1,  seconds: 0} : state.currentTime
       };
     case INCREMENT_SESSION_LENGTH:
       return {
         ...state,
         sessionLength: state.sessionLength !== 60 ? state.sessionLength + 1 : state.sessionLength,
-        currentTime: (state.isSession && state.sessionLength !== 60) ? { minutes: state.currentTime.minutes + 1,  seconds: 0} : state.currentTime
+        currentTime: (state.isSession && state.sessionLength !== 60) ? { minutes: state.sessionLength + 1,  seconds: 0} : state.currentTime
       };
     case DECREMENT_SESSION_LENGTH:
       return {
         ...state,
         sessionLength: state.sessionLength !== 1 ? state.sessionLength - 1 : 1,
-        currentTime: (state.isSession && state.sessionLength !== 1) ? { minutes: state.currentTime.minutes - 1,  seconds: 0} : state.currentTime
+        currentTime: (state.isSession && state.sessionLength !== 1) ? { minutes: state.sessionLength - 1,  seconds: 0} : state.currentTime
       };
+      case RESET:
+        return {
+          ...initialState
+        }
     default:
       return state;
   }
