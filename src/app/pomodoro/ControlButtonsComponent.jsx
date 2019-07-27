@@ -1,10 +1,15 @@
-import React from 'react';
+import React from "react";
 
-const ControlButtonsComponent = () => 
+const ControlButtonsComponent = ({reset}) => (
   <div className="control-buttons">
-    <button className="control-button" id="start"><i class="fa fa-play fa-2x"></i></button>
-    <button className="control-button" id="stop"><i class="fa fa-pause fa-2x"></i></button>
-    <button className="control-button" id="reset"><i class="fa fa-refresh fa-2x"></i></button>
+    <button className="control-button" id="start_stop">
+      <i className="fa fa-play fa-2x" />
+      <i className="fa fa-pause fa-2x" />
+    </button>
+    <button className="control-button" id="reset" onClick={reset}>
+      <i className="fa fa-refresh fa-2x" />
+    </button>
   </div>
+);
 
 export default ControlButtonsComponent;

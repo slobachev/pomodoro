@@ -1,21 +1,30 @@
-import { connect } from 'react-redux';
-import SessionLengthComponent from './SessionLengthComponent';
+import { connect } from "react-redux";
+import SessionLengthComponent from "./SessionLengthComponent";
+import {
+  incrementSessionLength,
+  decrementSessionLength
+} from "./duck/operations";
 
-const mapStateToProps = (state) => {
-    return { };
-}
+const mapStateToProps = state => {
+  return {
+    sessionLength: state.pomodoro.sessionLength
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
-    /* const fetchSubredditJson = (subreddit) => {
-        dispatch(homeOperations.fetchSubredditJson(subreddit))
-    }; */
-    
-    return { };
+const mapDispatchToProps = dispatch => {
+  return {
+    incrementSessionLength: () => {
+      dispatch(incrementSessionLength());
+    },
+    decrementSessionLength: () => {
+      dispatch(decrementSessionLength());
+    }
+  };
 };
 
 const SessionLengthContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(SessionLengthComponent);
 
 export default SessionLengthContainer;

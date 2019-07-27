@@ -1,17 +1,18 @@
-import { connect } from 'react-redux';
-import ControlButtonsComponent from './ControlButtonsComponent';
+import { connect } from "react-redux";
+import ControlButtonsComponent from "./ControlButtonsComponent";
+import { reset } from "./duck/operations";
 
-const mapDispatchToProps = (dispatch) => {
-    /* const fetchSubredditJson = (subreddit) => {
-        dispatch(homeOperations.fetchSubredditJson(subreddit))
-    }; */
-    
-    return { };
+const mapDispatchToProps = dispatch => {
+  return {
+    reset: () => {
+      dispatch(reset());
+    }
+  };
 };
 
 const ControlButtonsContainer = connect(
-    null,
-    mapDispatchToProps
+  null,
+  mapDispatchToProps
 )(ControlButtonsComponent);
 
 export default ControlButtonsContainer;

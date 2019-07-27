@@ -1,6 +1,6 @@
 import React from 'react';
 import ControlButtonsContainer from './pomodoro/ControlButtonsContainer';
-import CounterComponent from './pomodoro/CounterComponent';
+import CounterContainer from './pomodoro/CounterContainer';
 import BreakLengthContainer from './pomodoro/BreakLengthContainer';
 import SessionLengthContainer from './pomodoro/SessionLengthContainer';
 import "./App.scss"
@@ -12,7 +12,7 @@ const App = () => {
         <BreakLengthContainer />
         <SessionLengthContainer />
       </div>
-      <CounterComponent />
+      <CounterContainer />
       <ControlButtonsContainer />
     </div>
   );
