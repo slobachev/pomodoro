@@ -3,8 +3,12 @@ import {
     INCREMENT_SESSION_LENGTH, 
     DECREMENT_BREAK_LENGTH, 
     DECREMENT_SESSION_LENGTH, 
-    RESET
+    RESET,
+    TOGGLE_COUNTER,
+    DECREMENT_CURRENT_TIME
 } from "./actions";
+
+const INTERVAL = 1000;
 
 export const incrementBreakLength = () => {
     return {
@@ -34,4 +38,39 @@ export const reset = () => {
     return {
         type: RESET
     }
+}
+
+export const resetAsync = (isCounterOn, counter) => dispatch =>  {
+    if (isCounterOn) {
+        dispatch(toggleCounterAsync(isCounterOn, counter));
+    }
+
+    dispatch(reset());
+}
+
+export const decrementCurrentTime = () => {
+    return {
+        type: DECREMENT_CURRENT_TIME
+    }
+}
+
+export const toggleCounter = (isCounterOn, counter) => {
+    return {
+        type: TOGGLE_COUNTER,
+        counter: counter,
+        isCounterOn: isCounterOn
+    }
+}
+
+export const toggleCounterAsync = (isCounterOn, counter) => dispatch => {
+    const isCounterRunning = isCounterOn;
+    let newCounter = {};
+    
+    if (isCounterRunning) {
+        clearInterval(counter);
+    } else {
+        newCounter = setInterval(() => dispatch(decrementCurrentTime()), INTERVAL);
+    }
+    
+    dispatch(toggleCounter(!isCounterRunning, newCounter));
 }
