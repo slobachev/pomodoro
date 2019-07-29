@@ -5,7 +5,7 @@ import { toggleCounterAsync, resetAsync, decrementCurrentTime } from "./duck/ope
 const mapStateToProps = state => {
   return {
     isCounterOn: state.pomodoro.isCounterOn,
-    counter: state.pomodoro.counter
+    counter: state.pomodoro.counter,
   }
 }
 

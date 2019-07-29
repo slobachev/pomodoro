@@ -5,7 +5,8 @@ import {
   DECREMENT_SESSION_LENGTH,
   TOGGLE_COUNTER,
   RESET,
-  DECREMENT_CURRENT_TIME
+  DECREMENT_CURRENT_TIME,
+  TOGGLE_COUNTER_TYPE
 } from "./actions";
 
 const initialState = {
@@ -81,6 +82,16 @@ const pomodoroReducer = (state = initialState, action) => {
           seconds: secondsLeftAfterDecrement
         }
       };
+    case TOGGLE_COUNTER_TYPE:
+      const isSession = !state.isSession
+      return {
+        ...state,
+        isSession: isSession,
+        currentTime: {
+          minutes: isSession === true ? state.sessionLength : state.breakLength,
+          seconds: 0
+        }
+      }
     case RESET:
       return {
         ...initialState

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import CounterComponent from './CounterComponent';
+import { toggleCounterType } from "./duck/operations";
 
 const mapStateToProps = (state) => {
     return {
@@ -9,11 +10,11 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    /* const fetchSubredditJson = (subreddit) => {
-        dispatch(homeOperations.fetchSubredditJson(subreddit))
-    }; */
-    
-    return { };
+    return {
+        toggleCounterType: () => {
+          dispatch(toggleCounterType());
+        }
+      };
 };
 
 const CounterContainer = connect(

@@ -5,7 +5,8 @@ import {
     DECREMENT_SESSION_LENGTH, 
     RESET,
     TOGGLE_COUNTER,
-    DECREMENT_CURRENT_TIME
+    DECREMENT_CURRENT_TIME,
+    TOGGLE_COUNTER_TYPE
 } from "./actions";
 
 const INTERVAL = 1000;
@@ -43,6 +44,12 @@ export const reset = () => {
 export const resetAsync = (isCounterOn, counter) => dispatch =>  {
     if (isCounterOn) {
         dispatch(toggleCounterAsync(isCounterOn, counter));
+
+        let player = document.getElementById("beep");
+        if (!player.paused) {
+            player.pause();
+            player.currentTime = 0;
+        }
     }
 
     dispatch(reset());
@@ -50,7 +57,7 @@ export const resetAsync = (isCounterOn, counter) => dispatch =>  {
 
 export const decrementCurrentTime = () => {
     return {
-        type: DECREMENT_CURRENT_TIME
+        type: DECREMENT_CURRENT_TIME,
     }
 }
 
@@ -73,4 +80,10 @@ export const toggleCounterAsync = (isCounterOn, counter) => dispatch => {
     }
     
     dispatch(toggleCounter(!isCounterRunning, newCounter));
+}
+
+export const toggleCounterType = () => {
+    return {
+        type: TOGGLE_COUNTER_TYPE
+    }
 }
