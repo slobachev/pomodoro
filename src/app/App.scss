@@ -1,0 +1,15 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.length-settings {
+    display: flex;
+}
+
+.length-content {
+    width: 150px;
+    text-align: center;
+}
